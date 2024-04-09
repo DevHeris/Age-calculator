@@ -1,35 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-wrapper">
+      <div className="inputs">
+        <div>
+          <label htmlFor="day">DAY</label>
+          <input
+            type="number"
+            name="day"
+            id="day"
+            placeholder="DD"
+            value={day}
+            onChange={(e) => setDay(Number(e.target.value))}
+          />
+          <p className="error">This field is required</p>
+        </div>
+        <div>
+          <label htmlFor="month">MONTH</label>
+          <input
+            type="number"
+            name="month"
+            id="month"
+            placeholder="MM"
+            value={month}
+            onChange={(e) => setMonth(Number(e.target.value))}
+          />
+          <p className="error">This field is required</p>
+        </div>
+        <div>
+          <label htmlFor="year">YEAR</label>
+          <input
+            type="number"
+            name="year"
+            id="year"
+            placeholder="YYYY"
+            value={year}
+            onChange={(e) => setYear(Number(e.target.value))}
+          />
+          <p className="error">This field is required</p>
+        </div>
+        <img src="/images/icon-arrow.svg" alt="arrow" />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <Result day={days} month={months} year={years} />
+    </div>
+  );
 }
 
-export default App
+function Result({ day, month, year }) {
+  return (
+    <div className="results">
+      <p>
+        <span className="year">{year}</span>years
+      </p>
+      <p>
+        <span className="month">{month}</span>
+        months
+      </p>
+      <p>
+        <span className="day">{day}</span>days
+      </p>
+    </div>
+  );
+}
+
+export default App;
